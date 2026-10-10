@@ -2,7 +2,7 @@
 
 ## Install in Blender
 
-1. Download `minecraft_builder-0.5.2.zip` from [Releases](https://github.com/ayoub-ghanaj/BlockForge/releases/latest), or build it locally in `dist/`. **Keep it zipped.**
+1. Download `minecraft_builder-0.5.3.zip` from [Releases](https://github.com/ayoub-ghanaj/BlockForge/releases/latest), or build it locally in `dist/`. **Keep it zipped.**
 2. Open **Edit → Preferences → Add-ons**.
 3. Open the small **▼ menu at the top right → Install from Disk**.
 4. Choose the ZIP and enable **Minecraft Builder** if it is not already enabled.
@@ -137,7 +137,9 @@ can be added through an add-on update or **Import palette** JSON. A sample JSON
 and schema guide are in `docs/PALETTES.md`.
 
 The add-on never scans or changes your Minecraft installation. UV image textures,
-flat Principled colors and color attributes are supported. Bake complex
+flat Principled colors and color attributes are supported. UV textures can pass
+through reroutes, Point Mapping nodes, and Hue/Saturation/Value adjustments;
+mapping and adjustment controls must have constant, unlinked values. Bake complex
 procedural materials to a base-color image first. Open or very thin meshes can
 need inspection or repair. Current limits: 512 blocks per axis, two million
 bounding cells, eight million evaluated source triangles, 1.2 million preview

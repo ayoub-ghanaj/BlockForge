@@ -87,6 +87,7 @@ jobs:
           python tools/run_blender_ci.py tests/blender_editing.py
           python tools/run_blender_ci.py tests/blender_perimeter.py
           python tools/run_blender_ci.py tests/blender_integration.py
+          python tools/run_blender_ci.py tests/blender_material_nodes.py
       - name: Test installed ZIP and upgrade paths
         run: |
           python tools/run_blender_ci.py tests/blender_install.py

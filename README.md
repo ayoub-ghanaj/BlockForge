@@ -7,10 +7,11 @@ or native Axiom **`.bp`**.
 **Install:** [download the latest release](https://github.com/ayoub-ghanaj/BlockForge/releases/latest)
 using Blender's **Preferences → Add-ons → Install from Disk**.
 The panel is in **3D Viewport → N sidebar → Minecraft**.
-For the local workspace, the ZIP is `dist/minecraft_builder-0.5.2.zip`.
+For the local workspace, the ZIP is `dist/minecraft_builder-0.5.3.zip`.
 
-Version 0.5.2 improves maintainability and public build checks. The viewport
-provides **Pick Block** and **Select Area (2 Clicks)** buttons; shortcuts are optional.
+Version 0.5.3 supports Hue/Saturation/Value color adjustments and Point Mapping
+nodes on UV textures, including reroutes. Node controls must use constant values.
+The viewport provides **Pick Block** and **Select Area (2 Clicks)** buttons; shortcuts are optional.
 
 Version 0.5.0 adds [visible-face matching, textured previews, bulk editing and
 protection rechecks](docs/FEATURES_050.md). All 51 presets use their own block assets and registries.

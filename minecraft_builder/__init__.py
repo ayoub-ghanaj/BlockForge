@@ -3,7 +3,7 @@
 bl_info = {
     "name": "Minecraft Builder",
     "author": "Minecraft Builder contributors",
-    "version": (0, 5, 2),
+    "version": (0, 5, 3),
     "blender": (4, 2, 0),
     "location": "3D View > Sidebar > Minecraft",
     "category": "Import-Export",

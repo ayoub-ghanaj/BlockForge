@@ -1,6 +1,6 @@
 schema_version = "1.0.0"
 id = "minecraft_builder"
-version = "0.5.2"
+version = "0.5.3"
 name = "Minecraft Builder"
 tagline = "Turn colored models into Minecraft blocks and blueprints"
 maintainer = "Minecraft Builder contributors"

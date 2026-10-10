@@ -1,10 +1,11 @@
 """Blender evaluated-mesh extraction, UV sampling, and compact block previews."""
 
+import colorsys
 import math
 
 import bpy
 import numpy as np
-from mathutils import Vector
+from mathutils import Euler, Vector
 from mathutils.bvhtree import BVHTree
 
 from .core.geometry import MAX_CELLS, Grid, closest_barycentric, fit_grid
@@ -125,49 +126,55 @@ class ColorSampler:
 
     def resolve_material(self, material):
         if not material.use_nodes or not material.node_tree:
-            return ("flat", rgb_from_linear(material.diffuse_color))
+            return ("flat", tuple(material.diffuse_color[:3]))
         outputs = [
             n
             for n in material.node_tree.nodes
             if n.type == "OUTPUT_MATERIAL" and n.is_active_output
         ]
         if not outputs or not outputs[0].inputs["Surface"].is_linked:
-            return ("flat", rgb_from_linear(material.diffuse_color))
+            return ("flat", tuple(material.diffuse_color[:3]))
         node = outputs[0].inputs["Surface"].links[0].from_node
         if node.type != "BSDF_PRINCIPLED":
             raise ValueError(
                 f"{material.name}: use a Principled BSDF or bake the material to a base-color texture"
             )
-        socket = node.inputs["Base Color"]
+        return self.resolve_color(node.inputs["Base Color"], material)
+
+    def resolve_color(self, socket, material, depth=0):
+        if depth > 32:
+            raise ValueError(f"{material.name}: Base Color node chain is cyclic or too deep")
         if not socket.is_linked:
-            return ("flat", rgb_from_linear(socket.default_value))
+            return ("flat", tuple(socket.default_value[:3]))
         node = socket.links[0].from_node
-        while node.type == "REROUTE":
-            node = node.inputs[0].links[0].from_node
+        if node.type == "REROUTE":
+            if not node.inputs[0].is_linked:
+                raise ValueError(f"{material.name}: connect the Base Color reroute")
+            return self.resolve_color(node.inputs[0], material, depth + 1)
+        if node.type == "HUE_SAT":
+            color = self.resolve_color(node.inputs["Color"], material, depth + 1)
+            if node.mute:
+                return color
+            factor = node.inputs.get("Factor") or node.inputs.get("Fac")
+            controls = [node.inputs[name] for name in ("Hue", "Saturation", "Value")]
+            controls.append(factor)
+            if any(control.is_linked for control in controls):
+                raise ValueError(
+                    f"{material.name}: bake linked Hue/Saturation/Value controls to an image"
+                )
+            return ("hsv", color, tuple(float(control.default_value) for control in controls))
         if node.type == "RGB":
-            return ("flat", rgb_from_linear(node.outputs[0].default_value))
+            return ("flat", tuple(node.outputs[0].default_value[:3]))
         if node.type in ("VERTEX_COLOR", "ATTRIBUTE"):
             return ("attribute", getattr(node, "layer_name", getattr(node, "attribute_name", "")))
         if node.type != "TEX_IMAGE" or node.image is None:
             raise ValueError(
-                f"{material.name}: bake the Base Color node chain to an image texture before converting"
+                f"{material.name}: {node.name} cannot be sampled; "
+                "use a UV image texture or bake the Base Color chain"
             )
         if node.projection != "FLAT":
             raise ValueError(f"{material.name}: use UV image mapping or bake the material")
-        uv_name = ""
-        if node.inputs["Vector"].is_linked:
-            uv_node = node.inputs["Vector"].links[0].from_node
-            if uv_node.type == "UVMAP":
-                uv_name = uv_node.uv_map
-            elif (
-                uv_node.type == "TEX_COORD"
-                and node.inputs["Vector"].links[0].from_socket.name == "UV"
-            ):
-                pass
-            else:
-                raise ValueError(
-                    f"{material.name}: bake Mapping/procedural coordinates to a UV texture"
-                )
+        uv_name, mapping = self.resolve_uv(node.inputs["Vector"], material)
         image = node.image
         if image.source in ("TILED", "SEQUENCE", "MOVIE"):
             raise ValueError(f"{material.name}: bake tiled or animated images into one UV image")
@@ -182,7 +189,38 @@ class ColorSampler:
                 image.colorspace_settings.name,
                 image.is_float,
             )
-        return ("image", image.name, uv_name, node.extension, node.interpolation)
+        return ("image", image.name, uv_name, mapping, node.extension, node.interpolation)
+
+    def resolve_uv(self, socket, material, depth=0):
+        """Compile UV reroutes and constant Point Mapping nodes into one transform."""
+        if depth > 32:
+            raise ValueError(f"{material.name}: UV node chain is cyclic or too deep")
+        if not socket.is_linked:
+            return ("", None)
+        link = socket.links[0]
+        node = link.from_node
+        if node.type in ("REROUTE", "MAPPING"):
+            vector = node.inputs[0] if node.type == "REROUTE" else node.inputs["Vector"]
+            if not vector.is_linked:
+                raise ValueError(f"{material.name}: connect UV coordinates to {node.name}")
+            name, upstream = self.resolve_uv(vector, material, depth + 1)
+            if node.type == "REROUTE" or node.mute:
+                return name, upstream
+            if node.vector_type != "POINT":
+                raise ValueError(f"{material.name}: use Point Mapping or bake the UV texture")
+            controls = [node.inputs[key] for key in ("Location", "Rotation", "Scale")]
+            if any(control.is_linked for control in controls):
+                raise ValueError(f"{material.name}: bake linked Mapping controls to a UV image")
+            location, rotation, scale = (tuple(control.default_value) for control in controls)
+            transform = np.eye(4)
+            transform[:3, :3] = np.asarray(Euler(rotation, "XYZ").to_matrix()) @ np.diag(scale)
+            transform[:3, 3] = location
+            return name, transform if upstream is None else transform @ upstream
+        if node.type == "UVMAP":
+            return node.uv_map, None
+        if node.type == "TEX_COORD" and link.from_socket.name == "UV":
+            return "", None
+        raise ValueError(f"{material.name}: bake {node.name} coordinates to a UV texture")
 
     def sample(self, point):
         p = Vector(point)
@@ -198,24 +236,45 @@ class ColorSampler:
         material = (
             source["materials"][material_id] if material_id < len(source["materials"]) else None
         )
-        spec = self.materials[material.name] if material else ("flat", (180, 180, 180))
+        if material is None:
+            return (180, 180, 180)
+        spec = self.materials[material.name]
         if spec[0] == "flat":
-            return spec[1]
+            return rgb_from_linear(spec[1])
         vertex_ids = source["triangles"][index]
         _, weights = closest_barycentric(tuple(hit), source["vertices"][vertex_ids])
+        return rgb_from_linear(self.sample_linear(spec, source, index, np.asarray(weights)))
+
+    def sample_linear(self, spec, source, index, weights):
+        """Evaluate color adjustments before converting scene-linear RGB for matching."""
+        if spec[0] == "flat":
+            return spec[1]
+        if spec[0] == "hsv":
+            original = self.sample_linear(spec[1], source, index, weights)
+            hue, saturation, value, factor = spec[2]
+            h, s, v = colorsys.rgb_to_hsv(*original)
+            adjusted = colorsys.hsv_to_rgb(
+                (h + hue + 0.5) % 1, max(0, min(1, s * saturation)), v * value
+            )
+            return tuple((1 - factor) * a + factor * b for a, b in zip(original, adjusted))
         if spec[0] == "attribute":
             name = spec[1] or source["active_color"]
             if name not in source["attributes"]:
                 raise ValueError("Missing color attribute: " + name)
             domain, values = source["attributes"][name]
-            ids = vertex_ids if domain == "POINT" else source["loops"][index]
-            return rgb_from_linear(np.asarray(weights) @ values[ids, :3])
-        _, name, uv_name, extension, interpolation = spec
+            ids = source["triangles"][index] if domain == "POINT" else source["loops"][index]
+            return weights @ values[ids, :3]
+        return self.sample_image(spec, source, index, weights)
+
+    def sample_image(self, spec, source, index, weights):
+        _, name, uv_name, mapping, extension, interpolation = spec
         uv_name = uv_name or source["active_uv"]
         if uv_name not in source["uv_layers"]:
             raise ValueError("Image-textured meshes need a UV map: " + source["name"])
-        uv = np.asarray(weights) @ source["uv_layers"][uv_name][source["loops"][index]]
-        pixels, colorspace, is_float = self.images[name]
+        uv = weights @ source["uv_layers"][uv_name][source["loops"][index]]
+        if mapping is not None:
+            uv = (mapping @ np.array([uv[0], uv[1], 0.0, 1.0]))[:2]
+        pixels, colorspace, _ = self.images[name]
         height, width, _ = pixels.shape
         if extension == "REPEAT":
             uv = uv - np.floor(uv)
@@ -224,30 +283,27 @@ class ColorSampler:
         elif extension == "CLIP" and (np.any(uv < 0) or np.any(uv > 1)):
             return (0, 0, 0)
         uv = np.clip(uv, 0, 1)
+
+        def pixel(x, y):
+            if extension == "REPEAT":
+                x, y = x % width, y % height
+            else:
+                x, y = max(0, min(width - 1, x)), max(0, min(height - 1, y))
+            return pixels[y, x, :3]
+
         if interpolation == "Closest":
-            rgb = pixels[
-                min(height - 1, int(uv[1] * height)), min(width - 1, int(uv[0] * width)), :3
-            ]
+            rgb = pixel(min(width - 1, int(uv[0] * width)), min(height - 1, int(uv[1] * height)))
         else:
             fx, fy = uv * np.array([width, height]) - 0.5
             x0, y0 = math.floor(fx), math.floor(fy)
             tx, ty = fx - x0, fy - y0
-
-            def at(x, y):
-                return (
-                    pixels[y % height, x % width, :3]
-                    if extension == "REPEAT"
-                    else pixels[max(0, min(height - 1, y)), max(0, min(width - 1, x)), :3]
-                )
-
-            rgb = (1 - ty) * ((1 - tx) * at(x0, y0) + tx * at(x0 + 1, y0)) + ty * (
-                (1 - tx) * at(x0, y0 + 1) + tx * at(x0 + 1, y0 + 1)
+            rgb = (1 - ty) * ((1 - tx) * pixel(x0, y0) + tx * pixel(x0 + 1, y0)) + ty * (
+                (1 - tx) * pixel(x0, y0 + 1) + tx * pixel(x0 + 1, y0 + 1)
             )
-        # Byte image buffers are exposed as normalized source values. Float
-        # image buffers in scene-linear spaces need display conversion.
-        if colorspace in ("Linear", "Linear Rec.709", "Linear Rec.2020", "ACEScg"):
-            return rgb_from_linear(rgb)
-        return tuple(max(0, min(255, round(float(c) * 255))) for c in rgb)
+        # Cycles filters byte sRGB images before decoding for shader color nodes.
+        if colorspace == "sRGB":
+            return tuple(linear(float(channel)) for channel in rgb)
+        return rgb
 
 
 FACE_CORNERS = (

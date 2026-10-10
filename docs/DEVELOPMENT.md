@@ -44,12 +44,15 @@ Run each script in a fresh process, with an installed Blender executable:
 blender --background --factory-startup --disable-autoexec --python-exit-code 1 --python tests/blender_smoke.py
 blender --background --factory-startup --disable-autoexec --python-exit-code 1 --python tests/blender_controls.py
 blender --background --factory-startup --disable-autoexec --python-exit-code 1 --python tests/blender_v050.py
+blender --background --factory-startup --disable-autoexec --python-exit-code 1 --python tests/blender_material_nodes.py
 ```
 
 Other coverage includes `blender_palette.py`, `blender_editing.py`,
 `blender_perimeter.py`, and `blender_versions.py`. Build the ZIP before running
 `blender_install.py` or `blender_upgrade.py`. Upgrade fixtures in
 `tests/fixtures/releases/` are this project's earlier GPL add-ons.
+The material-node check compares sampled colors against Cycles emission bakes,
+then runs conversion with the same node graph on a closed mesh.
 
 The CI runner uses the official `bpy==5.2.2` Python package through
 `tools/run_blender_ci.py`. The minimum manifest version is Blender 4.2; that does
