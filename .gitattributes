@@ -1,0 +1,17 @@
+* text=auto
+*.py text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.toml text eol=lf
+*.ps1 text eol=crlf
+*.cmd text eol=crlf
+*.blend binary
+*.png binary
+*.zip binary
+*.gz binary
+*.schem binary
+*.litematic binary
+*.bp binary
+# Saved evidence is hashed byte-for-byte in its manifests, including CRLF files.
+results/** -text whitespace=cr-at-eol
+**/PROMPTS.md whitespace=-blank-at-eof

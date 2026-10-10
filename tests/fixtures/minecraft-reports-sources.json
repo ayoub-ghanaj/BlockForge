@@ -1,0 +1,653 @@
+{
+  "26.3": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/26.3.json",
+        "sha256": "4d4f4e55cddefd0d28aa28d5b92c19b29a8fe5cc6418196e73d819f4406e9ba9"
+      },
+      {
+        "path": ".cache/registries/26.3.json",
+        "sha256": "f0a264dcec2a72b1e2d3a36e1dc70c73b99c04c4637b20f909b908eca8c651ae"
+      }
+    ]
+  },
+  "26.2": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/26.2.json",
+        "sha256": "0b1470910281d2f7ac36544672fc04befcd600c9dab1574d0636727ae6531726"
+      },
+      {
+        "path": ".cache/registries/26.2.json",
+        "sha256": "23f25d37b89746a5b01302ffcf88a176fff204b2762458a60c5425801ad0faf6"
+      }
+    ]
+  },
+  "26.1.2": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/26.1.2.json",
+        "sha256": "226acb5f23d8d467271d853cc762e4533511417c5ef46bc90ad9b4029b123b80"
+      },
+      {
+        "path": ".cache/registries/26.1.2.json",
+        "sha256": "fbcb066e95f9b78e708d17be0e063aadfb1cddc64e54ef3cf6d3f7c47950456a"
+      }
+    ]
+  },
+  "26.1.1": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/26.1.1.json",
+        "sha256": "226acb5f23d8d467271d853cc762e4533511417c5ef46bc90ad9b4029b123b80"
+      },
+      {
+        "path": ".cache/registries/26.1.1.json",
+        "sha256": "fbcb066e95f9b78e708d17be0e063aadfb1cddc64e54ef3cf6d3f7c47950456a"
+      }
+    ]
+  },
+  "26.1": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/26.1.json",
+        "sha256": "226acb5f23d8d467271d853cc762e4533511417c5ef46bc90ad9b4029b123b80"
+      },
+      {
+        "path": ".cache/registries/26.1.json",
+        "sha256": "fbcb066e95f9b78e708d17be0e063aadfb1cddc64e54ef3cf6d3f7c47950456a"
+      }
+    ]
+  },
+  "1.21.11": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.21.11.json",
+        "sha256": "d365936ff7ed70388394f3cd4a4bf3d7ffa0414b48ba3d8e194e55f9e313d8a1"
+      },
+      {
+        "path": ".cache/registries/1.21.11.json",
+        "sha256": "46de533f3629d8c0d077652a82e6991c2675ddc97cb0d3e5174cd2a1c9baabc2"
+      }
+    ]
+  },
+  "1.21.10": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.21.10.json",
+        "sha256": "d365936ff7ed70388394f3cd4a4bf3d7ffa0414b48ba3d8e194e55f9e313d8a1"
+      },
+      {
+        "path": ".cache/registries/1.21.10.json",
+        "sha256": "46de533f3629d8c0d077652a82e6991c2675ddc97cb0d3e5174cd2a1c9baabc2"
+      }
+    ]
+  },
+  "1.21.9": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.21.9.json",
+        "sha256": "d365936ff7ed70388394f3cd4a4bf3d7ffa0414b48ba3d8e194e55f9e313d8a1"
+      },
+      {
+        "path": ".cache/registries/1.21.9.json",
+        "sha256": "46de533f3629d8c0d077652a82e6991c2675ddc97cb0d3e5174cd2a1c9baabc2"
+      }
+    ]
+  },
+  "1.21.8": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.21.8.json",
+        "sha256": "dd5e4e749823f38d05feafe990481da801f539d9ca743ce6bd854d2de3b031a6"
+      },
+      {
+        "path": ".cache/registries/1.21.8.json",
+        "sha256": "408c1b1fd2c848995327d54d2b73def482d9f733ad7f9a93e3eec4302ab82d4c"
+      }
+    ]
+  },
+  "1.21.7": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.21.7.json",
+        "sha256": "dd5e4e749823f38d05feafe990481da801f539d9ca743ce6bd854d2de3b031a6"
+      },
+      {
+        "path": ".cache/registries/1.21.7.json",
+        "sha256": "408c1b1fd2c848995327d54d2b73def482d9f733ad7f9a93e3eec4302ab82d4c"
+      }
+    ]
+  },
+  "1.21.6": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.21.6.json",
+        "sha256": "dd5e4e749823f38d05feafe990481da801f539d9ca743ce6bd854d2de3b031a6"
+      },
+      {
+        "path": ".cache/registries/1.21.6.json",
+        "sha256": "408c1b1fd2c848995327d54d2b73def482d9f733ad7f9a93e3eec4302ab82d4c"
+      }
+    ]
+  },
+  "1.21.5": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.21.5.json",
+        "sha256": "f2d4cd7430cc389bf3a6c3f12258888498b97c07e68d365212ddb3c2ad15d58a"
+      },
+      {
+        "path": ".cache/registries/1.21.5.json",
+        "sha256": "fa88512f11ac4b43c005761b61fd287b0d4f5016d5c27279a57404370ce8a0b6"
+      }
+    ]
+  },
+  "1.21.4": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.21.4.json",
+        "sha256": "660409b3f6899ff3547b731972fa7df2f2c108245e396540a1f86b9108ee5d87"
+      },
+      {
+        "path": ".cache/registries/1.21.4.json",
+        "sha256": "93039a8af335498f34f88a81ece4985025f83cbf3c60e6561bc83ea05cafdf51"
+      }
+    ]
+  },
+  "1.21.3": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.21.3.json",
+        "sha256": "d8ce8b323c0e7eef1ebc2e7f8bd73140d2391d09fcfa5f72cf9464295ee8c7f5"
+      },
+      {
+        "path": ".cache/registries/1.21.3.json",
+        "sha256": "310ed756b4b7fd73f6cb8b336d77243189af67680e53d8ee99c716a8e41012a8"
+      }
+    ]
+  },
+  "1.21.2": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.21.2.json",
+        "sha256": "d8ce8b323c0e7eef1ebc2e7f8bd73140d2391d09fcfa5f72cf9464295ee8c7f5"
+      },
+      {
+        "path": ".cache/registries/1.21.2.json",
+        "sha256": "310ed756b4b7fd73f6cb8b336d77243189af67680e53d8ee99c716a8e41012a8"
+      }
+    ]
+  },
+  "1.21.1": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.21.1.json",
+        "sha256": "6c4c0d87b27d665b5f52be4edb000a6d83c4a9b2e6c5c9c931ba695a45f8df24"
+      },
+      {
+        "path": ".cache/registries/1.21.1.json",
+        "sha256": "df14a277fb64c47f11b8dfbaecd743ac4b31231840651b0f73dcbf081c317d5e"
+      }
+    ]
+  },
+  "1.21": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.21.json",
+        "sha256": "6c4c0d87b27d665b5f52be4edb000a6d83c4a9b2e6c5c9c931ba695a45f8df24"
+      },
+      {
+        "path": ".cache/registries/1.21.json",
+        "sha256": "df14a277fb64c47f11b8dfbaecd743ac4b31231840651b0f73dcbf081c317d5e"
+      }
+    ]
+  },
+  "1.20.6": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.20.6.json",
+        "sha256": "6c4c0d87b27d665b5f52be4edb000a6d83c4a9b2e6c5c9c931ba695a45f8df24"
+      },
+      {
+        "path": ".cache/registries/1.20.6.json",
+        "sha256": "df14a277fb64c47f11b8dfbaecd743ac4b31231840651b0f73dcbf081c317d5e"
+      }
+    ]
+  },
+  "1.20.5": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.20.5.json",
+        "sha256": "6c4c0d87b27d665b5f52be4edb000a6d83c4a9b2e6c5c9c931ba695a45f8df24"
+      },
+      {
+        "path": ".cache/registries/1.20.5.json",
+        "sha256": "df14a277fb64c47f11b8dfbaecd743ac4b31231840651b0f73dcbf081c317d5e"
+      }
+    ]
+  },
+  "1.20.4": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.20.4.json",
+        "sha256": "92e5d07a5b2340b913754d334d1643452455aa0e4a66101f49c636381b480d75"
+      },
+      {
+        "path": ".cache/registries/1.20.4.json",
+        "sha256": "5ce2daac9c99bd9443d2439d5bdcd9854296c78fbe6a5c8dababafc632a7fed2"
+      }
+    ]
+  },
+  "1.20.3": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.20.3.json",
+        "sha256": "92e5d07a5b2340b913754d334d1643452455aa0e4a66101f49c636381b480d75"
+      },
+      {
+        "path": ".cache/registries/1.20.3.json",
+        "sha256": "5ce2daac9c99bd9443d2439d5bdcd9854296c78fbe6a5c8dababafc632a7fed2"
+      }
+    ]
+  },
+  "1.20.2": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.20.2.json",
+        "sha256": "2a8c1376d3ee84b61b10f2334311be1605a1a86dedd19e7b697f865d3c257aaf"
+      },
+      {
+        "path": ".cache/registries/1.20.2.json",
+        "sha256": "d50107c462b64aeb131adc6373b14796ce108bd1d478dfae65c3fd6dfa443c9d"
+      }
+    ]
+  },
+  "1.20.1": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.20.1.json",
+        "sha256": "06e99cc190051e09462691db3a0ce4b034f8e78d09279258978a92b98cc74c54"
+      },
+      {
+        "path": ".cache/registries/1.20.1.json",
+        "sha256": "d50107c462b64aeb131adc6373b14796ce108bd1d478dfae65c3fd6dfa443c9d"
+      }
+    ]
+  },
+  "1.20": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.20.json",
+        "sha256": "06e99cc190051e09462691db3a0ce4b034f8e78d09279258978a92b98cc74c54"
+      },
+      {
+        "path": ".cache/registries/1.20.json",
+        "sha256": "d50107c462b64aeb131adc6373b14796ce108bd1d478dfae65c3fd6dfa443c9d"
+      }
+    ]
+  },
+  "1.19.4": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.19.4.json",
+        "sha256": "7c99f975d0222fdc0eb7fa26f8e32bd524f8f27c3caa216bbb77b776b0f909a7"
+      },
+      {
+        "path": ".cache/registries/1.19.4.json",
+        "sha256": "8fe7af7d692e86b2b62d44b5131d80e899f3b0fa638d3c093f2112d05c618a80"
+      }
+    ]
+  },
+  "1.19.3": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.19.3.json",
+        "sha256": "72b9e74c578c77e3c57a340dba8d2497bbcf0c4f901eee22151cf0e36feb7385"
+      },
+      {
+        "path": ".cache/registries/1.19.3.json",
+        "sha256": "a4f5fd4bb85d509db857aedcf56daf8775be2b3738ed7e65441d83d99e72e2c8"
+      }
+    ]
+  },
+  "1.19.2": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.19.2.json",
+        "sha256": "c8473945fa4cdf52df7ccc88c1affb152f21ef9232085381d07986d003932c35"
+      },
+      {
+        "path": ".cache/registries/1.19.2.json",
+        "sha256": "809e8592484a07b9a9a7674924f7e43efb071a35bcfeff9a77700d178d89c008"
+      }
+    ]
+  },
+  "1.19.1": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.19.1.json",
+        "sha256": "c8473945fa4cdf52df7ccc88c1affb152f21ef9232085381d07986d003932c35"
+      },
+      {
+        "path": ".cache/registries/1.19.1.json",
+        "sha256": "809e8592484a07b9a9a7674924f7e43efb071a35bcfeff9a77700d178d89c008"
+      }
+    ]
+  },
+  "1.19": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.19.json",
+        "sha256": "c8473945fa4cdf52df7ccc88c1affb152f21ef9232085381d07986d003932c35"
+      },
+      {
+        "path": ".cache/registries/1.19.json",
+        "sha256": "809e8592484a07b9a9a7674924f7e43efb071a35bcfeff9a77700d178d89c008"
+      }
+    ]
+  },
+  "1.18.2": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.18.2.json",
+        "sha256": "d406121c34a2dc77e7762be10780da2542d794ce55fbff5716cacae7beff5500"
+      },
+      {
+        "path": ".cache/registries/1.18.2.json",
+        "sha256": "860a1cb51a68f18f9505d0c3a1302eccdb1891b485af3d0f134d74546f229650"
+      }
+    ]
+  },
+  "1.18.1": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.18.1.json",
+        "sha256": "d406121c34a2dc77e7762be10780da2542d794ce55fbff5716cacae7beff5500"
+      },
+      {
+        "path": ".cache/registries/1.18.1.json",
+        "sha256": "860a1cb51a68f18f9505d0c3a1302eccdb1891b485af3d0f134d74546f229650"
+      }
+    ]
+  },
+  "1.18": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.18.json",
+        "sha256": "d406121c34a2dc77e7762be10780da2542d794ce55fbff5716cacae7beff5500"
+      },
+      {
+        "path": ".cache/registries/1.18.json",
+        "sha256": "860a1cb51a68f18f9505d0c3a1302eccdb1891b485af3d0f134d74546f229650"
+      }
+    ]
+  },
+  "1.17.1": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.17.1.json",
+        "sha256": "d406121c34a2dc77e7762be10780da2542d794ce55fbff5716cacae7beff5500"
+      },
+      {
+        "path": ".cache/registries/1.17.1.json",
+        "sha256": "860a1cb51a68f18f9505d0c3a1302eccdb1891b485af3d0f134d74546f229650"
+      }
+    ]
+  },
+  "1.17": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.17.json",
+        "sha256": "d406121c34a2dc77e7762be10780da2542d794ce55fbff5716cacae7beff5500"
+      },
+      {
+        "path": ".cache/registries/1.17.json",
+        "sha256": "860a1cb51a68f18f9505d0c3a1302eccdb1891b485af3d0f134d74546f229650"
+      }
+    ]
+  },
+  "1.16.5": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.16.5.json",
+        "sha256": "acdb6d01f40ba3ff5197c0bc39c9642ab79cc3edbba0e93e1ca202239ab73dc6"
+      },
+      {
+        "path": ".cache/registries/1.16.5.json",
+        "sha256": "8d612fa7a4f5553eebd31324933ec2d68f2bc408545c8a8fc4e735694e991368"
+      }
+    ]
+  },
+  "1.16.4": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.16.4.json",
+        "sha256": "acdb6d01f40ba3ff5197c0bc39c9642ab79cc3edbba0e93e1ca202239ab73dc6"
+      },
+      {
+        "path": ".cache/registries/1.16.4.json",
+        "sha256": "8d612fa7a4f5553eebd31324933ec2d68f2bc408545c8a8fc4e735694e991368"
+      }
+    ]
+  },
+  "1.16.3": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.16.3.json",
+        "sha256": "acdb6d01f40ba3ff5197c0bc39c9642ab79cc3edbba0e93e1ca202239ab73dc6"
+      },
+      {
+        "path": ".cache/registries/1.16.3.json",
+        "sha256": "8d612fa7a4f5553eebd31324933ec2d68f2bc408545c8a8fc4e735694e991368"
+      }
+    ]
+  },
+  "1.16.2": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.16.2.json",
+        "sha256": "acdb6d01f40ba3ff5197c0bc39c9642ab79cc3edbba0e93e1ca202239ab73dc6"
+      },
+      {
+        "path": ".cache/registries/1.16.2.json",
+        "sha256": "8d612fa7a4f5553eebd31324933ec2d68f2bc408545c8a8fc4e735694e991368"
+      }
+    ]
+  },
+  "1.16.1": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.16.1.json",
+        "sha256": "991b30c12c196975b191c7721274718edc2d1d3f5ab98a68048c0023845d13b3"
+      },
+      {
+        "path": ".cache/registries/1.16.1.json",
+        "sha256": "8d612fa7a4f5553eebd31324933ec2d68f2bc408545c8a8fc4e735694e991368"
+      }
+    ]
+  },
+  "1.16": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.16.json",
+        "sha256": "991b30c12c196975b191c7721274718edc2d1d3f5ab98a68048c0023845d13b3"
+      },
+      {
+        "path": ".cache/registries/1.16.json",
+        "sha256": "8d612fa7a4f5553eebd31324933ec2d68f2bc408545c8a8fc4e735694e991368"
+      }
+    ]
+  },
+  "1.15.2": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.15.2.json",
+        "sha256": "d57715e39a647874edbbdeb36ac1c96144d3385ef411a12c2d96496e94156a05"
+      },
+      {
+        "path": ".cache/registries/1.15.2.json",
+        "sha256": "e88eb4e580a7dff6fedeb935ec31a5a80602290876df25739e154a488118c29f"
+      }
+    ]
+  },
+  "1.15.1": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.15.1.json",
+        "sha256": "d57715e39a647874edbbdeb36ac1c96144d3385ef411a12c2d96496e94156a05"
+      },
+      {
+        "path": ".cache/registries/1.15.1.json",
+        "sha256": "e88eb4e580a7dff6fedeb935ec31a5a80602290876df25739e154a488118c29f"
+      }
+    ]
+  },
+  "1.15": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.15.json",
+        "sha256": "d57715e39a647874edbbdeb36ac1c96144d3385ef411a12c2d96496e94156a05"
+      },
+      {
+        "path": ".cache/registries/1.15.json",
+        "sha256": "e88eb4e580a7dff6fedeb935ec31a5a80602290876df25739e154a488118c29f"
+      }
+    ]
+  },
+  "1.14.4": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.14.4.json",
+        "sha256": "80458ca4e57efbdb6daef11045a79c4e64c6611b61e0f051051bbceb5b011672"
+      },
+      {
+        "path": ".cache/registries/1.14.4.json",
+        "sha256": "786623e7587a80d7032e4b963ee04666a4e3738ec083500d6314d1e62f2253fc"
+      }
+    ]
+  },
+  "1.14.3": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.14.3.json",
+        "sha256": "80458ca4e57efbdb6daef11045a79c4e64c6611b61e0f051051bbceb5b011672"
+      },
+      {
+        "path": ".cache/registries/1.14.3.json",
+        "sha256": "786623e7587a80d7032e4b963ee04666a4e3738ec083500d6314d1e62f2253fc"
+      }
+    ]
+  },
+  "1.14.2": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.14.2.json",
+        "sha256": "80458ca4e57efbdb6daef11045a79c4e64c6611b61e0f051051bbceb5b011672"
+      },
+      {
+        "path": ".cache/registries/1.14.2.json",
+        "sha256": "786623e7587a80d7032e4b963ee04666a4e3738ec083500d6314d1e62f2253fc"
+      }
+    ]
+  },
+  "1.14.1": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.14.1.json",
+        "sha256": "80458ca4e57efbdb6daef11045a79c4e64c6611b61e0f051051bbceb5b011672"
+      },
+      {
+        "path": ".cache/registries/1.14.1.json",
+        "sha256": "786623e7587a80d7032e4b963ee04666a4e3738ec083500d6314d1e62f2253fc"
+      }
+    ]
+  },
+  "1.14": {
+    "source": "https://github.com/misode/mcmeta",
+    "inputs": [
+      {
+        "path": ".cache/blocks/1.14.json",
+        "sha256": "80458ca4e57efbdb6daef11045a79c4e64c6611b61e0f051051bbceb5b011672"
+      },
+      {
+        "path": ".cache/registries/1.14.json",
+        "sha256": "786623e7587a80d7032e4b963ee04666a4e3738ec083500d6314d1e62f2253fc"
+      }
+    ]
+  },
+  "1.13.2": {
+    "source": "https://github.com/PrismarineJS/minecraft-data",
+    "inputs": [
+      {
+        "path": ".cache/legacy/1.13.2.json",
+        "sha256": "8b963379dd5b556d8764ea1802190098cc4e5ef25c7f7612f6b96f77bb36c6c9"
+      }
+    ]
+  },
+  "1.13.1": {
+    "source": "https://github.com/PrismarineJS/minecraft-data",
+    "inputs": [
+      {
+        "path": ".cache/legacy/1.13.json",
+        "sha256": "fa230d4a5946b303eea17616417757de6cee5c3c7c0e952f5feb0dabe93e020f"
+      }
+    ]
+  },
+  "1.13": {
+    "source": "https://github.com/PrismarineJS/minecraft-data",
+    "inputs": [
+      {
+        "path": ".cache/legacy/1.13.json",
+        "sha256": "fa230d4a5946b303eea17616417757de6cee5c3c7c0e952f5feb0dabe93e020f"
+      }
+    ]
+  }
+}

@@ -1,0 +1,5 @@
+# Tests only. Blender supplies NumPy for the installed add-on.
+numpy>=1.26,<3
+nbtlib==2.0.4
+Pillow>=10,<13
+ruff==0.17.0

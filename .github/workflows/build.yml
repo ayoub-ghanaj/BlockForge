@@ -1,0 +1,134 @@
+name: Build and test
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: ${{ !startsWith(github.ref, 'refs/tags/') }}
+
+env:
+  PYTHONUNBUFFERED: '1'
+
+jobs:
+  package:
+    name: Python tests and ZIP build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+      - name: Install test dependencies
+        run: python -m pip install -r requirements-dev.txt
+      - name: Check Python formatting and lint
+        run: |
+          python -m ruff format --check minecraft_builder tests tools
+          python -m ruff check minecraft_builder tests tools
+      - name: Check release version
+        env:
+          RELEASE_TAG: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || '' }}
+        run: python tools/release_metadata.py
+      - name: Run offline core and file-format tests
+        run: python -m unittest discover -s tests -v
+      - name: Build extension
+        run: python tools/package_addon.py
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: addon-${{ github.sha }}
+          path: |
+            dist/minecraft_builder-*.zip
+            dist/addon-checksum.json
+          if-no-files-found: error
+          retention-days: 7
+
+  blender:
+    name: Blender 5.2.2 integration and upgrades
+    needs: package
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: addon-${{ github.sha }}
+          path: dist/
+      - name: Install Blender Python runtime
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libxrender1 libxi6 libxxf86vm1 libxfixes3 libxkbcommon0 libsm6
+          python -m pip install bpy==5.2.2 -r requirements-dev.txt
+      - name: Test generation, controls and saved editing
+        run: |
+          python tools/run_blender_ci.py tests/blender_smoke.py
+          python tools/run_blender_ci.py tests/blender_controls.py
+          python tools/run_blender_ci.py tests/blender_versions.py
+          python tools/run_blender_ci.py tests/blender_palette.py
+          python tools/run_blender_ci.py tests/blender_v050.py
+          python tools/run_blender_ci.py tests/blender_editing.py
+          python tools/run_blender_ci.py tests/blender_perimeter.py
+          python tools/run_blender_ci.py tests/blender_integration.py
+      - name: Test installed ZIP and upgrade paths
+        run: |
+          python tools/run_blender_ci.py tests/blender_install.py
+          python tools/run_blender_ci.py tests/blender_upgrade.py
+          version=$(python tools/release_metadata.py)
+          python tools/run_blender_ci.py tests/blender_upgrade.py -- "$version" broken
+          python tools/run_blender_ci.py tests/blender_upgrade.py -- "$version" from040
+      - name: Save test reports
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: blender-reports-${{ github.sha }}
+          path: |
+            build/verification/*.json
+            build/live-edit/*edit*.json
+            build/perimeter/blender-perimeter.json
+          retention-days: 7
+          if-no-files-found: warn
+
+  release:
+    name: Publish tested tagged release
+    needs: [package, blender]
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: addon-${{ github.sha }}
+          path: dist/
+      - name: Publish tested build
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          version=$(python3 tools/release_metadata.py)
+          gh release create "$RELEASE_TAG" "dist/minecraft_builder-$version.zip" dist/addon-checksum.json \
+            --verify-tag --title "Minecraft Builder $RELEASE_TAG" \
+            --notes-file "docs/releases/$version.md"

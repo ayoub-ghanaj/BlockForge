@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "profiles": [
+    {
+      "id": "26.1.2 - Stone example",
+      "data_version": 4790,
+      "blocks": [
+        {"state": "minecraft:stone", "rgb": [128, 128, 128], "shape": "cube", "category": "Stone"},
+        {"state": "minecraft:stone_slab[type=bottom,waterlogged=false]", "rgb": [128, 128, 128], "shape": "slab", "category": "Stone"},
+        {"state": "minecraft:stone_stairs[facing=north,half=bottom,shape=straight,waterlogged=false]", "rgb": [128, 128, 128], "shape": "stairs", "category": "Stone"}
+      ]
+    }
+  ]
+}

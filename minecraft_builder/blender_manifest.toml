@@ -1,0 +1,13 @@
+schema_version = "1.0.0"
+id = "minecraft_builder"
+version = "0.5.2"
+name = "Minecraft Builder"
+tagline = "Turn colored models into Minecraft blocks and blueprints"
+maintainer = "Minecraft Builder contributors"
+type = "add-on"
+tags = ["Import-Export", "Object", "Mesh"]
+blender_version_min = "4.2.0"
+license = ["SPDX:GPL-3.0-or-later"]
+
+[permissions]
+files = "Import palettes/textures and export builds and material lists"
